@@ -1,0 +1,8 @@
+import React, { useState } from 'react'; import { Home, Video, LayoutGrid, User, DollarSign } from 'lucide-react';
+
+export default function DrvXApp() { const [activeTab, setActiveTab] = useState('home'); const [videos, setVideos] = useState([ { id: 1, title: 'Epic Gameplay', creator: 'ON Gamerz', views: 1000, likes: 500, earned: 50, viewerEarned: 5 }, { id: 2, title: 'Funny Short', creator: 'Sakhi', views: 2000, likes: 800, earned: 80, viewerEarned: 8 }, ]); const [newVideoTitle, setNewVideoTitle] = useState('');
+
+const addVideo = () => { if (!newVideoTitle.trim()) return; const newVideo = { id: videos.length + 1, title: newVideoTitle.trim(), creator: 'ON Gamerz', views: 0, likes: 0, earned: 0, viewerEarned: 0 }; setVideos([newVideo, ...videos]); setNewVideoTitle(''); };
+
+const renderTabContent = () => { switch (activeTab) { case 'home': return ( <div> <h2>Home Feed</h2> {videos.map(video => ( <div key={video.id} style={{border:'1px solid #ff0000', margin:'10px', padding:'10px', borderRadius:'10px', backgroundColor:'#111'}}> <h3 style={{color:'#ff0000'}}>{video.title}</h3> <p style={{color:'#fff'}}>Creator: {video.creator}</p> <p style={{color:'#fff'}}>Views: {video.views} | Likes: {video.likes}</p> <p style={{color:'#0f0'}}>Creator Earned: ₹{video.earned} | Viewer Earned: ₹{video.viewerEarned}</p> </div> ))} </div> ); case 'videos': return <h2 style={{color:'#fff'}}>All Videos</h2>; case 'creator': return ( <div> <h2 style={{color:'#ff
+
